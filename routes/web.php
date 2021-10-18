@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,7 +15,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('profile/{username}',[UserController::class,'profile'])->name('user.profile');
+Route::resource('articles',ArticleController::class);
+Route::get('register',[RegisterController::class,'index'])->name('register');
+Route::post('',[RegisterController::class,'register'])->name('post.register');
 
 Route::get('/', function () {
+    
     return view('welcome');
 });
+
+// Route::get('/test', function () {
+//     $fuits =['orange','citron','banane'];
+//     $data =[
+//         'number' => 21,
+//         'fruits'=> $fuits,
+
+//     ];
+//     return view('test',$data);
+// });
+

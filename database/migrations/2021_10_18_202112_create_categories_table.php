@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableCrontabs extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateTableCrontabs extends Migration
      */
     public function up()
     {
-        Schema::create('crontabs', function (Blueprint $table) {
+        Schema::create('Categories', function (Blueprint $table) {
             $table->id();
-            $table->string('nom');
-            $table->text('description');
-            $table->string('status');
+            $table->string('name');
+            $table->string('slug');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateTableCrontabs extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('crontabs');
+        Schema::dropIfExists('Categories');
     }
 }
