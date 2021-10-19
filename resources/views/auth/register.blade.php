@@ -11,9 +11,9 @@
 
     <div class="col-lg-9">
 
-      {{-- @if(session('success'))
+      @if(session('success'))
         <div class="alert alert-success">{{ session('success') }}</div>
-      @endif --}}
+      @endif
 
       <!-- /.card -->
 
@@ -27,36 +27,35 @@
             @csrf
             <div class="form-group">
               <label for="name">Nom</label>
-              <input type="text" name="name" class="form-control" value="">
-              {{-- @error('name')
+              <input type="text" name="name" class="form-control" value="{{ old('name') }}">
+              @error('name')
                 <div class="error">{{ $message }}</div>
-              @enderror --}}
+              @enderror
             </div>
 
             <div class="form-group">
               <label for="email">Email</label>
-              <input type="email" name="email" class="form-control" value="">
-              {{-- @error('email')
+              <input type="email" name="email" class="form-control" value="{{ old('email') }}">
+              @error('email')
                 <div class="error">{{ $message }}</div>
-              @enderror --}}
+              @enderror
             </div>
 
             <div class="form-group">
               <label for="password">Mot de passe</label>
               <input type="password" name="password" class="form-control">
-              {{-- @error('password')
+              @error('password')
                 <div class="error">{{ $message }}</div>
-              @enderror --}}
+              @enderror
             </div>
-
-            {{-- <div class="form-group form-check">
+            <div class="form-group form-check">
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Check me out</label>
-            </div> --}}
+            </div>
             <button type="submit" class="btn btn-primary">Inscription</button>
           </form>
 
-          <p><a href="">J'ai déjà un compte</a></p>
+          {{-- <p><a href="">J'ai déjà un compte</a></p> --}}
 
         </div>
       </div>
