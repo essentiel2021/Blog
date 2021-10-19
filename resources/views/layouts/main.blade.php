@@ -26,19 +26,18 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="">Accueil</a>
+            <a class="nav-link" href="{{ url('/') }}">Accueil</a>
           </li>
-          @guest
-          <li class="nav-item">
-            <a class="nav-link" href="">Connexion</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="">Inscription</a>
-          </li>
-          @endguest
+          @if (Auth::guest())
 
-          @auth
-          <li class="nav-item">
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('login') }}">Connexion</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ route('register') }}">Inscription</a>
+            </li>
+          @else
+            <li class="nav-item">
               <a class="nav-link" href="">Mon Compte</a>
             </li>
             <li class="nav-item">
@@ -47,8 +46,7 @@
             <li class="nav-item">
               <a class="nav-link" href="">Déconnexion</a>
             </li>
-          @endauth
-
+          @endif
         </ul>
       </div>
     </div>

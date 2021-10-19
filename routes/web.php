@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -17,8 +18,12 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('profile/{username}',[UserController::class,'profile'])->name('user.profile');
 Route::resource('articles',ArticleController::class);
+
 Route::get('register',[RegisterController::class,'index'])->name('register');
-Route::post('',[RegisterController::class,'register'])->name('post.register');
+Route::post('register',[RegisterController::class,'register'])->name('post.register');
+
+Route::get('login',[LoginController::class,'index'])->name('login');
+Route::post('login',[LoginController::class,'login'])->name('post.login');
 
 Route::get('/', function () {
     
