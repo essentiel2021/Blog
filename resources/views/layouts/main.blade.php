@@ -44,7 +44,7 @@
               <a class="nav-link" href="">Ajouter un article</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Déconnexion</a>
+              <a class="nav-link" href="{{ route('logout') }}">Déconnexion</a>
             </li>
           @endif
         </ul>

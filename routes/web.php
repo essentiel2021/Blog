@@ -1,8 +1,11 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\ResetController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,6 +27,14 @@ Route::post('register',[RegisterController::class,'register'])->name('post.regis
 
 Route::get('login',[LoginController::class,'index'])->name('login');
 Route::post('login',[LoginController::class,'login'])->name('post.login');
+
+Route::get('logout',[LogoutController::class,'logout'])->name('logout');
+
+Route::get('forgot',[ForgotController::class,'index'])->name('forgot');
+Route::post('forgot',[ForgotController::class,'store'])->name('post.forgot');
+
+Route::get('reset/{token}',[ResetController::class,'index'])->name('reset');
+Route::post('reset',[ResetController::class,'reset'])->name('post.reset');
 
 Route::get('/', function () {
     

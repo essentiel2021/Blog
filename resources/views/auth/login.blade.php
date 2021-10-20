@@ -54,9 +54,9 @@
                 <button type="submit" class="btn btn-primary">Connexion</button>
             </form>
 
-          {{-- <p><a href="{{ route('forgot') }}">J'ai oublié mon mot de passe</a></p>
+          <p><a href="{{ route('forgot') }}">J'ai oublié mon mot de passe</a></p>
 
-          <p><a href="{{ route('register') }}">Je n'ai pas de compte</a></p> --}}
+          <p><a href="{{ route('register') }}">Je n'ai pas de compte</a></p>
 
         </div>
       </div>
