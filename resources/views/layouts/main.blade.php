@@ -41,7 +41,7 @@
               <a class="nav-link" href="">Mon Compte</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="">Ajouter un article</a>
+              <a class="nav-link" href="{{route('articles.create')}}">Ajouter un article</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{ route('logout') }}">Déconnexion</a>

@@ -8,6 +8,10 @@ use Illuminate\Support\Facades\DB;
 
 class ResetController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
     public function index(string $token){
         $password_reset = DB::table('password_resets')->where('token',$token)->first();
         abort_unless($password_reset, 403);

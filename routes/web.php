@@ -19,8 +19,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('profile/{username}',[UserController::class,'profile'])->name('user.profile');
-Route::resource('articles',ArticleController::class);
+Route::get('profile/{user}',[UserController::class,'profile'])->name('user.profile');
+Route::resource('articles',ArticleController::class)->except('index');
 
 Route::get('register',[RegisterController::class,'index'])->name('register');
 Route::post('register',[RegisterController::class,'register'])->name('post.register');
@@ -36,10 +36,7 @@ Route::post('forgot',[ForgotController::class,'store'])->name('post.forgot');
 Route::get('reset/{token}',[ResetController::class,'index'])->name('reset');
 Route::post('reset',[ResetController::class,'reset'])->name('post.reset');
 
-Route::get('/', function () {
-    
-    return view('welcome');
-});
+Route::get('/',[ArticleController::class,'index']);
 
 // Route::get('/test', function () {
 //     $fuits =['orange','citron','banane'];
