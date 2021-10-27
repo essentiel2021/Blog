@@ -63,6 +63,9 @@ class ArticleController extends Controller
             'content' => ['required'],
             'category' => ['nullable','sometimes','exists:categories,id']
         ]));
+        $article->user_id = auth()->id();
+        $article->slug = Str::slug($article->title);
+        $article->category_id = request('category',null);
         // $article = new Article();
         // $article->user_id = auth()->id();
         // $article->category_id = request('category',null);
