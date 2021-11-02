@@ -6,7 +6,9 @@ use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ArticleRequest;
 
 class ArticleController extends Controller
 {
@@ -56,16 +58,26 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        $article = Article::create(request()->validate([
-            'title' => ['required','unique:Articles,title','max:20'],
-            'content' => ['required'],
-            'category' => ['nullable','sometimes','exists:categories,id']
-        ]));
-        $article->user_id = auth()->id();
-        $article->slug = Str::slug($article->title);
-        $article->category_id = request('category',null);
+        $validatedData = $request->validated();
+        Auth::user()->articles()->create($validatedData);
+
+        // $article = Auth::user()->articles()->create(request()->validate(
+        //     [
+        //         'title' => ['required','unique:Articles,title','max:20'],
+        //         'content' => ['required'],
+        //         'category_id' => ['nullable','sometimes','exists:categories,id']
+        //     ]
+        // ));
+       
+        // $article = Article::create(request()->validate([
+        //     'title' => ['required','unique:Articles,title','max:20'],
+        //     'content' => ['required'],
+        //     'category_id' => ['nullable','sometimes','exists:categories,id']
+        // ]));
+
+        //$article->category_id = request('category',null);
         // $article = new Article();
         // $article->user_id = auth()->id();
         // $article->category_id = request('category',null);
@@ -121,7 +133,7 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ArticleRequest $request, $id)
     {
         //
     }
