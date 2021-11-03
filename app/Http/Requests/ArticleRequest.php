@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ArticleRequest extends FormRequest
@@ -24,9 +25,11 @@ class ArticleRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required','unique:Articles,title','max:20'],
-            'content' => ['required'],
-            'category' => ['nullable','sometimes','exists:categories,id']
+            'title'=> $this->method() == 'POST' ? 
+            ['required', 'max:20', 'unique:articles,title'] :
+            ['required', 'max:20', Rule::unique('articles', 'title')->ignore($this->article)],
+            'content'=> ['required'],
+            'category'=>['sometimes', 'nullable', 'exists:categories,id'],
         ];
     }
 }

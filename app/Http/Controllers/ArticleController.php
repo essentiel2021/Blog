@@ -61,6 +61,7 @@ class ArticleController extends Controller
     public function store(ArticleRequest $request)
     {
         $validatedData = $request->validated();
+        $validatedData['category_id'] = request('category', null);
         Auth::user()->articles()->create($validatedData);
 
         // $article = Auth::user()->articles()->create(request()->validate(
@@ -121,9 +122,17 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        abort_if(Auth::user()->id != $article->user_id,403);
+        $data = [
+            'title'=> $description = 'Mise à jour de '.$article->title,
+            'description'=>$description,
+            'article'=>$article,
+            'categories'=>Category::get(),
+        ];
+
+        return view('article.edit', $data);
     }
 
     /**
@@ -133,9 +142,18 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, $id)
+    public function update(ArticleRequest $request, Article $article)
     {
-        //
+        abort_if(auth()->id() != $article->user_id, 403);
+
+        $validatedData = $request->validated();
+        $validatedData['category_id'] = request('category', null);
+
+        $article = Auth::user()->articles()->updateOrCreate(['id'=>$article->id], $validatedData);
+
+        $success = 'Article modifié';
+
+        return redirect()->route('articles.edit', ['article'=>$article->slug])->withSuccess($success);
     }
 
     /**

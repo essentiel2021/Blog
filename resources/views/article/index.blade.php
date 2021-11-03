@@ -27,15 +27,17 @@
           
           <span class="auhtor">Par <a href="{{ route('user.profile',['user'=> $article->user->id]) }}">{{ $article->user->name }}</a> inscrit le {{ $article->user->created_at->format('d/m/Y') }}</span> <br>
           <span class="time">Posté {{ $article->created_at->diffForHumans() }}</span>
-
-          <div class="author mt-4">
-            <a href="" class="btn btn-info">Modifier</a> &nbsp;
-            <form style="display: inline;" action="" method="post">
-              @method('DELETE')
-              @csrf
-              <button type="submit" class="btn btn-danger">X</button>
-            </form>
-          </div>
+          @if (Auth::check() && Auth::user()->id == $article->user_id)
+            <div class="author mt-4">
+              <a href="{{ route('articles.edit',['article'=> $article->slug]) }}" class="btn btn-info">Modifier</a> &nbsp;
+              <form style="display: inline;" action="" method="post">
+                @method('DELETE')
+                @csrf
+                <button type="submit" class="btn btn-danger">X</button>
+              </form>
+            </div>
+          @endif
+         
         </div>
       </div>
       @endforeach
