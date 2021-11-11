@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ForgotController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ResetController;
 use App\Http\Controllers\UserController;
+use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -37,6 +39,8 @@ Route::get('reset/{token}',[ResetController::class,'index'])->name('reset');
 Route::post('reset',[ResetController::class,'reset'])->name('post.reset');
 
 Route::get('/',[ArticleController::class,'index']);
+
+Route::post('comment/{article}',[CommentController::class,'store'])->name('post.comment');
 
 // Route::get('/test', function () {
 //     $fuits =['orange','citron','banane'];

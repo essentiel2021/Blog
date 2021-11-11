@@ -33,7 +33,7 @@
 
       <!-- /.card -->
 
-      {{-- <div class="card card-outline-secondary my-4">
+       <div class="card card-outline-secondary my-4">
         <div class="card-header">
           Commentaires
         </div>
@@ -67,7 +67,7 @@
             <a href="{{ route('login') }}" class="btn btn-success">Laisser un commentaire</a>
           @endguest
         </div>
-      </div> --}}
+      </div>
       <!-- /.card -->
 
     </div>

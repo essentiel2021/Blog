@@ -111,6 +111,7 @@ class ArticleController extends Controller
         $data = [
             'title'=>$article->title.' - '.config('app.name'),
             'description'=>$article->title.'. '.Str::words($article->content, 10),
+            'comments' => $article->comments()->orderByDesc('created_at')->get(),
             'article'=>$article,
         ];
         return view('article.show', $data);
@@ -162,8 +163,11 @@ class ArticleController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Article $article)
     {
-        //
+        abort_if(auth()->id() != $article->user_id, 403);
+        $article->delete();
+        $sucess = 'Article suprimé.';
+        return back()->withSuccess($sucess);
     }
 }

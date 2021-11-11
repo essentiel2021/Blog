@@ -30,7 +30,7 @@
           @if (Auth::check() && Auth::user()->id == $article->user_id)
             <div class="author mt-4">
               <a href="{{ route('articles.edit',['article'=> $article->slug]) }}" class="btn btn-info">Modifier</a> &nbsp;
-              <form style="display: inline;" action="" method="post">
+              <form style="display: inline;" action="{{ route('articles.destroy',['article' => $article->slug]) }}" method="post">
                 @method('DELETE')
                 @csrf
                 <button type="submit" class="btn btn-danger">X</button>
@@ -52,7 +52,7 @@
 
       <!-- /.card -->
 
-      {{-- <div class="card card-outline-secondary my-4">
+      <div class="card card-outline-secondary my-4">
         <div class="card-header">
           Commentaires
         </div>
@@ -67,7 +67,7 @@
 
           <a href="#" class="btn btn-success">Laisser un commentaire</a>
         </div>
-      </div> --}}
+      </div>
       <!-- /.card -->
 
     </div>
