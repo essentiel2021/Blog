@@ -16,7 +16,12 @@ class CommentController extends Controller
     {
         $validatedData = $request->validated();
         $validatedData['user_id'] = auth()->id();
+
         $article->comments()->create($validatedData);
+        if(auth()->id() != $article->user_id)//si le commentateur n'est pas l'auteur del'article
+        {
+            dd($article->user());
+        }
 
         $success = 'commentaire ajouté.';
 
