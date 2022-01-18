@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\CommentWasCreated;
 use App\Http\Requests\commentRequest;
 use App\Models\Article;
 use Illuminate\Http\Request;
@@ -15,12 +16,12 @@ class CommentController extends Controller
     public function store( commentRequest $request, Article $article)
     {
         $validatedData = $request->validated();
-        $validatedData['user_id'] = auth()->id();
+        $validatedData['user_id'] = auth()->id(); 
 
-        $article->comments()->create($validatedData);
+        $comment = $article->comments()->create($validatedData);
         if(auth()->id() != $article->user_id)//si le commentateur n'est pas l'auteur del'article
         {
-            dd($article->user());
+           event(new CommentWasCreated($comment));
         }
 
         $success = 'commentaire ajouté.';
