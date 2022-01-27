@@ -22,6 +22,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('profile/{user}',[UserController::class,'profile'])->name('user.profile');
+
+Route::get('user/edit',[UserController::class,'edit'])->name('user.edit');
+Route::post('user/store', [UserController::class,'store'])->name('post.user');
+
 Route::resource('articles',ArticleController::class)->except('index');
 
 Route::get('register',[RegisterController::class,'index'])->name('register');

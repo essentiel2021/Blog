@@ -38,7 +38,7 @@
             </li>
           @else
             <li class="nav-item">
-              <a class="nav-link" href="">Mon Compte</a>
+              <a class="nav-link" href="{{ route('user.edit') }}">Mon Compte</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('articles.create')}}">Ajouter un article</a>
