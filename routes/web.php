@@ -46,13 +46,13 @@ Route::get('/',[ArticleController::class,'index']);
 
 Route::post('comment/{article}',[CommentController::class,'store'])->name('post.comment');
 
-// Route::get('/test', function () {
-//     $fuits =['orange','citron','banane'];
-//     $data =[
-//         'number' => 21,
-//         'fruits'=> $fuits,
+Route::get('/test', function () {
+    $fuits =['orange','citron','banane'];
+    $data =[
+        'number' => 21,
+        'fruits'=> $fuits,
 
-//     ];
-//     return view('test',$data);
-// });
+    ];
+    return view('test',$data);
+});
 
